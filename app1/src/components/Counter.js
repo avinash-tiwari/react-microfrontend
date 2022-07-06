@@ -1,5 +1,4 @@
-// import React, {useState} from 'react'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 export function Counter() {
   const [counter, setCounter] = useState(0);
@@ -11,6 +10,14 @@ export function Counter() {
         setCounter(counter - 1);
     }
   }
+
+  useEffect(()=>{
+    if (counter===5) {
+      const event = new CustomEvent('addToCart', { detail: 'a custom event from products btn' });
+      console.log('CUSTOM EVENT ADDED!!!');
+      window.dispatchEvent(event);
+    }
+  },[counter])
   return (
     <>
         <div>Counter</div>
