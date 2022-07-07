@@ -1,37 +1,33 @@
-// import { mount } from 'products/ProductsIndex';
-// import { Counter } from 'app1/Counter';
-import React, { useEffect, useState } from 'react';
-const Counter = React.lazy(() => import('app1/Counter'));
-
+import React, { useEffect, useState, Suspense } from 'react';
+import { manager } from './manager';
 function App() {
   const [componentLoaded, setComponentLoaded] = useState(false);
   const [CurrentComponent, setCurrentComponent] = useState(null);
 
-  const loadComponent = async () => {
-    let Counter = await import('app1/Counter');
-    if(Counter){
+  const loadComponent = async (cmpName) => {
+    const Component = manager(cmpName);
+    console.log("🚀 ~ file: App.js ~ line 11 ~ loadComponent ~ Component", Component)
+    if(Component){
+      setCurrentComponent(Component);
       setComponentLoaded(true);
-      setCurrentComponent(Counter);
     }
   }
 
   useEffect(() => {
-    // mount(document.querySelector('#root'));
     window.addEventListener('addToCart',async (event) => {
       console.log("🚀 ~ file: bootstrap.js ~ line 7 ~ window.addEventListener ~ event", event)
+      loadComponent('app2')
     });
-    setTimeout(()=>{
-      loadComponent()
-    }, 5000)
   }, [])
 
   return (
-    <div className="App">
-      <h1>Testing microftonends</h1>
-      {componentLoaded? <CurrentComponent/>: null}
-      {/* {loadComponent()} */}
-      {/* <Counter/> */}
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className="App">
+        <h1>Testing microftonends</h1>
+        <button onClick={() => loadComponent('app1')}>Load component</button>
+        {componentLoaded? <CurrentComponent/>: null}
+      </div>
+    </Suspense>
   );
 }
 
