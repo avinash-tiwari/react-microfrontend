@@ -22,9 +22,10 @@ function App() {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="App">
+      <div className="Container-App">
         <h1>Testing microftonends</h1>
-        <button onClick={() => loadComponent('app1')}>Load component</button>
+        <button onClick={() => loadComponent('tapberry')}>Tapberry</button>
+        <button onClick={() => loadComponent('bossberry')}>Bossberry</button>
         {componentLoaded? <CurrentComponent/>: null}
       </div>
     </Suspense>
