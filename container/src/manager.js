@@ -1,19 +1,27 @@
 import React from 'react';
 
-const app1 = ()=> {
-    return React.lazy(async () => await import('app1/Counter'));
+const app1 = async ()=> {
+    // return React.lazy(async () => await import('app1/Counter'));
+    let { mount } = await import('app1/Counter');
+    return mount;
 }
 
-const app2 = ()=> {
-    return React.lazy(async () => await import('app2/Display'));
+const app2 = async ()=> {
+    // return React.lazy(async () => await import('app2/Display'));
+    let { mount } = await import('app2/Display');
+    return mount;
 }
 
-const bossberry = ()=> {
-    return React.lazy(async () => await import('bossberry/Game'));
+const bossberry = async ()=> {
+    // return React.lazy(async () => await import('bossberry/Game'));
+    let { mount } = await import('bossberry/Game');
+    return mount;
 }
 
-const tapberry = ()=> {
-    return React.lazy(async () => await import('tapberry/Game'));
+const tapberry = async ()=> {
+    // return React.lazy(async () => await import('tapberry/Game'));
+    let { mount } = await import('tapberry/Game');
+    return mount;
 }
 
 export const manager = (appString) => {

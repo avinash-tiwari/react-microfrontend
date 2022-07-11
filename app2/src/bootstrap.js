@@ -5,25 +5,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const mount = (el) => {
-  // const root = ReactDOM.createRoot(document.getElementById('root'));
-  console.log('CALLED!!!');
-  console.log("🚀 ~ file: bootstrap.js ~ line 8 ~ mount ~ el", el)
-  ReactDOM.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
-    el
-  );
+    ReactDOM.render(
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>,
+        el
+    );
 }
 
-if(process.env.NODE_ENV === 'development'){
-  const element = document.querySelector('#_app1-root');
-  if(element) {
-    mount(element);
-  }
+if(process.env.NODE_ENV === 'development') {
+    const element = document.querySelector('#_app2-root')
+    if(element){
+        mount(element);
+    }
 }
 
-export { mount }
+export { mount };
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
